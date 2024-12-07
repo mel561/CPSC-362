@@ -1,0 +1,568 @@
+.groupChat {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .header {
+    padding: 20px;
+    background-color: #222529;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #dddddd35;
+
+    .groupInfo {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      h2 {
+        font-size: 24px;
+        font-weight: 500;
+        margin-left: 10px;
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        .bio {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          white-space: nowrap;
+          font-size: 14px;
+          color: #a5a5a5;
+          margin-top: 5px;
+        }
+      }
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+
+      button {
+        padding: 8px 15px;
+        background-color: #0b93f6;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.9;
+        }
+      }
+    }
+  }
+
+  .messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  .inputArea {
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+    background-color: #222529;
+    align-items: center;
+
+    label {
+      cursor: pointer;
+      order: 1;
+      
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    input[type="text"] {
+      order: 2;
+      flex: 1;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #dddddd35;
+      background-color: #2a2e33;
+      color: white;
+      height: 40px;
+    }
+
+    .emojiButton {
+      order: 3;
+      position: relative;
+      display: flex;
+      align-items: center;
+      z-index: 1000;
+      
+      img {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        padding: 2px;
+      }
+
+      .emojiPicker {
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        z-index: 1001;
+
+        :global(.EmojiPickerReact) {
+          --epr-bg-color: #222529;
+          --epr-hover-bg-color: #2a2e33;
+          --epr-category-label-bg-color: #222529;
+          --epr-search-input-bg-color: #2a2e33;
+          --epr-text-color: #fff;
+          --epr-search-input-text-color: #fff;
+          --epr-highlight-color: #0b93f6;
+          --epr-emoji-size: 20px;
+          
+          background-color: #222529;
+          border-color: #444;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+          .epr-search {
+            background-color: #2a2e33;
+            border-color: #444;
+          }
+
+          .epr-category-nav {
+            background-color: #222529;
+            padding: 8px 0;
+          }
+
+          .epr-emoji-category-label {
+            background-color: #222529;
+            color: #fff;
+          }
+
+          .epr-emoji-category-content {
+            background: none;
+          }
+
+          .epr-preview {
+            display: none;
+          }
+
+          .epr-emoji {
+            &:hover {
+              background-color: #2a2e33;
+            }
+          }
+        }
+      }
+    }
+
+    button {
+      order: 4;
+      margin-left: auto;
+      padding: 12px 30px;
+      background-color: #0b93f6;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      min-width: 120px;
+      height: 40px;
+    }
+
+    .imagePreviewContainer {
+      position: fixed;
+      bottom: 90px;
+      left: 200px;
+      width: auto;
+      max-width: 400px;
+      padding: 10px;
+      z-index: 1000;
+    }
+
+    .imagePreview {
+      background: #2a2e33;
+      padding: 5px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 1000;
+
+      img {
+        max-width: 200px;
+        max-height: 150px;
+        border-radius: 4px;
+        object-fit: contain;
+      }
+
+      button {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        width: 24px;
+        height: 24px;
+        min-width: unset;
+        padding: 0;
+        margin: 0;
+        border-radius: 50%;
+        background: #ff4444;
+        color: white;
+
+        &:hover {
+          background: #cc0000;
+        }
+      }
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  gap: 20px;
+}
+
+.modal form textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #dddddd35;
+  background-color: #2a2e33;
+  color: white;
+  min-height: 100px;
+  resize: vertical;
+}
+
+.chatContainer {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+
+  &.withDetails {
+    .messages {
+      flex: 2;
+    }
+  }
+}
+
+.detailsPanel {
+  flex: 1;
+  min-width: 300px;
+  max-width: 400px;
+  border-left: 1px solid #dddddd35;
+  background-color: #222529;
+  overflow-y: auto;
+  padding: 20px;
+
+  .detailsSection {
+    margin-bottom: 30px;
+
+    h3 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+  }
+
+  .userProfile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #2a2e33;
+    margin-bottom: 20px;
+
+    img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    h2 {
+      font-size: 20px;
+      color: #fff;
+    }
+
+    .bio {
+      font-size: 14px;
+      color: #a5a5a5;
+      text-align: center;
+    }
+
+    button {
+      padding: 8px 15px;
+      background-color: #0b93f6;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+
+  .membersList {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .memberItem {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px;
+      background-color: #2a2e33;
+      border-radius: 8px;
+
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .memberInfo {
+        flex: 1;
+
+        .username {
+          font-weight: 500;
+          font-size: 16px;
+          color: #fff;
+          display: block;
+          margin-bottom: 5px;
+        }
+    max-width: 100%;
+
+    a {
+      color: #0b93f6;
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &.own {
+    margin-left: auto;
+
+    .content {
+      background-color: #0b93f6;
+      color: white;
+    }
+  }
+
+  .systemMessage {
+    color: #a5a5a5;
+    font-style: italic;
+    text-align: center;
+    display: block;
+    background-color: #2a2e33;
+  }
+
+  img {
+    max-width: 200px;
+    border-radius: 5px;
+    margin-top: 5px;
+    display: block;
+  }
+}
+    padding: 8px 12px;
+    border-radius: 8px;
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  &.own {
+    margin-left: auto;
+
+    .content {
+      background-color: #0b93f6;
+      color: white;
+    }
+  }
+
+  .systemMessage {
+    color: #a5a5a5;
+    font-style: italic;
+    text-align: center;
+    display: block;
+  }
+
+  img {
+    max-width: 200px;
+    border-radius: 5px;
+    margin-top: 5px;
+    display: block;
+  }
+}
+
+.message {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  max-width: 60%;
+  width: fit-content;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+
+  .content {
+    background-color: #2a2e33;
+    padding: 8px 12px;
+    border-radius: 8px;
+    width: fit-content;
+
+    p {
+      margin: 0;
+      padding: 0;
+      color: white;
+    }
+
+    .message-image {
+      max-width: 300px;
+      max-height: 300px;
+      border-radius: 8px;
+      object-fit: contain;
+      cursor: pointer;
+      margin: 5px 0;
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
+    .timestamp {
+      font-size: 12px;
+      color: black; /* Change this line from #a5a5a5 to black */
+      margin-top: 4px;
+      display: block;
+    }
+  }
+
+  .sender {
+    font-size: 13px;
+    color: #a5a5a5;
+    margin-bottom: 4px;
+  }
+
+  &.own {
+    margin-left: auto;
+    
+    .content {
+      background-color: #0b93f6;
+      color: white;
+      
+      p {
+        color: white;
+      }
+    }
+  }
+}
+
+/* Update emoji picker styles */
+.emojiButton .emojiPicker {
+  .EmojiPickerReact {
+    background-color: #222529 !important;
+    border: 1px solid #444 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+
+    * {
+      color: white !important;
+    }
+
+    .epr-preview {
+      display: none !important;
+    }
+
+    .epr-search-container input {
+      background-color: #2a2e33 !important;
+      border-color: #444 !important;
+    }
+
+    .epr-category-nav {
+      background-color: #222529 !important;
+      padding-bottom: 10px !important;
+    }
+
+    .epr-emoji-category-label {
+      background-color: #222529 !important;
+    }
+
+    .epr-body::-webkit-scrollbar {
+      background-color: #222529 !important;
+      width: 10px !important;
+    }
+
+    .epr-body::-webkit-scrollbar-thumb {
+      background-color: #444 !important;
+      border-radius: 5px !important;
+    }
+  }
+}
+
+.emojiButton {
+  position: relative;
+
+  img {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    transition: transform 0.2s;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .emojiPicker {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    z-index: 1001;
+
+    .EmojiPickerReact {
+      background-color: #222529 !important;
+      border: 1px solid #444 !important;
+      
+      * {
+        color: white;
+      }
+
+      .epr-search {
+        background-color: #2a2e33;
+        border-color: #444;
+      }
+
+      .epr-preview {
+        display: none;
+      }
+    }
+  }
+}
+
+// Add a click handler to the document to close emoji picker when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.emojiButton')) {
+    setShowEmoji(false);
+  }
+});

@@ -1,0 +1,93 @@
+.settings {
+    height: 100vh;
+    width: 100vw;  /* Add full viewport width */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #131517;
+    position: absolute;  /* Change from fixed to absolute */
+    top: 0;
+    left: 0;
+    z-index: 1000;  /* Add z-index to ensure it's on top */
+
+    
+  
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      background-color: #1a1d21;
+      padding: 40px;
+      border-radius: 12px;
+      width: 400px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 90%;  /* Add max-width for responsiveness */
+      margin: 0 auto;  /* Center the form */
+  
+      h2 {
+        color: white;
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 24px;
+      }
+  
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        
+        label {
+          color: white;
+          font-size: 14px;
+        }
+      }
+  
+      input[type="file"] {
+        background-color: #222529;
+        padding: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        color: white;
+        &::-webkit-file-upload-button {
+          background-color: #0b93f6;
+          border: none;
+          border-radius: 5px;
+          color: white;
+          padding: 8px 16px;
+          cursor: pointer;
+          margin-right: 10px;
+          &:hover {
+            opacity: 0.9;
+          }
+        }
+      }
+  
+      input[type="text"] {
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #2c2f33;
+        background-color: #222529;
+        color: white;
+        font-size: 16px;
+        &:focus {
+          border-color: #0b93f6;
+        }
+      }
+  
+      button {
+        padding: 15px;
+        background-color: #0b93f6;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 500;
+        transition: opacity 0.2s;
+  
+        &:hover {
+          opacity: 0.9;
+        }
+      }
+    }
+  }

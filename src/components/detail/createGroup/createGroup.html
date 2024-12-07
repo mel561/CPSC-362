@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Group Chat</title>
+    <link rel="stylesheet" href="createGroup.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Create Group Chat</h2>
+        <div class="group-form">
+            <input type="text" id="group-name" placeholder="Enter group name">
+            <div class="user-list">
+                <h3>Select Users</h3>
+                <div id="available-users">
+                    <!-- Users will be populated here dynamically -->
+                </div>
+            </div>
+            <div class="selected-users">
+                <h3>Selected Users</h3>
+                <div id="selected-users-list"></div>
+            </div>
+            <button id="create-group-btn">Create Group</button>
+        </div>
+    </div>
+    <script src="createGroup.js"></script>
+</body>
+</html>
