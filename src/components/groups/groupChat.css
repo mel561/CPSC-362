@@ -559,10 +559,3 @@
     }
   }
 }
-
-// Add a click handler to the document to close emoji picker when clicking outside
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('.emojiButton')) {
-    setShowEmoji(false);
-  }
-});
