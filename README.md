@@ -51,3 +51,7 @@ Event handling
 File handling (FileReader API)
 Modal dialogs
 Responsive design
+
+Deployment:
+
+Netlify
